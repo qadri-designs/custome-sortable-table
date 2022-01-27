@@ -4,6 +4,7 @@ import { GrPrevious, GrNext } from "react-icons/gr";
 
 const SortAbleTable = () => {
   const [data, setData] = useState();
+  const [num, setNum] = useState(10);
   const [fromRange, setFromRange] = useState(0);
   const [toRange, setToRange] = useState(9);
 
@@ -14,25 +15,30 @@ const SortAbleTable = () => {
     setData(filteredData);
   }, [toRange, fromRange]);
 
+  useEffect(() => {
+    setFromRange(0);
+    setToRange(num - 1);
+  }, [num]);
+
   const handlePrevious = () => {
-    if (fromRange === 0 && toRange === 9) {
+    if (fromRange === 0 && toRange === num) {
       setFromRange(fromRange);
       setToRange(toRange);
     } else {
-      setFromRange(fromRange - 10);
+      setFromRange(fromRange - num);
       if (tabledata.length - 1 === toRange) {
         setToRange(fromRange - 1);
       } else {
-        setToRange(toRange - 10);
+        setToRange(toRange - num);
       }
     }
   };
 
   const handleNext = () => {
     if (toRange < tabledata.length - 1) {
-      setFromRange(fromRange + 10);
-      if (tabledata.length - 1 - toRange > 10) {
-        setToRange(toRange + 10);
+      setFromRange(fromRange + num);
+      if (tabledata.length - 1 - toRange > num) {
+        setToRange(toRange + num);
       } else {
         setToRange(toRange + (tabledata.length - 1) - toRange);
       }
@@ -42,6 +48,20 @@ const SortAbleTable = () => {
   return (
     <>
       <div className="container mx-auto pt-5">
+        <div className="w-100 d-flex justify-content-end">
+          <select
+            className="form-select w-25 my-2"
+            aria-label="Default select example"
+            value={num}
+            onChange={(e) => setNum(parseInt(e.target.value))}
+          >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+          </select>
+        </div>
         <table className="table table-success table-striped text-left">
           <thead>
             <tr>
