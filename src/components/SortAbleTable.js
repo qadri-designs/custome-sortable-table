@@ -62,29 +62,31 @@ const SortAbleTable = () => {
             <option value="50">50</option>
           </select>
         </div>
-        <table className="table table-success table-striped text-left">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data &&
-              data.map((item) => (
-                <tr key={item.id}>
-                  <th scope="row"> {item.id} </th>
-                  <td> {item.first_name} </td>
-                  <td>{item.last_name}</td>
-                  <td>{item.gender}</td>
-                  <td>{item.email}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <div className="cutome-scroll">
+          <table className="table table-success table-striped text-left py-0">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((item) => (
+                  <tr key={item.id}>
+                    <th scope="row"> {item.id} </th>
+                    <td> {item.first_name} </td>
+                    <td>{item.last_name}</td>
+                    <td>{item.gender}</td>
+                    <td>{item.email}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
 
         <div className="d-flex align-items-center justify-content-end gx-3">
           <span>
